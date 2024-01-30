@@ -6,6 +6,7 @@
 [Nothing here](https://youtu.be/dQw4w9WgXcQ)
 ## TODO:
 - [ ] Invent a project name
+- [ ] Add ash/snow particles
 - [ ] Create basic controls for
     - [x] PC
     - [ ] Phone
