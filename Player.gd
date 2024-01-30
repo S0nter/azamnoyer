@@ -38,3 +38,4 @@ func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
 	b.transform = end_of_gun.global_transform
+	b.look_at(get_global_mouse_position())
