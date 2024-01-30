@@ -11,4 +11,4 @@
     - [ ] Phone
     - [x] Controller
 - [ ] Implement multiplayer on one device for phones
-- [ ] Implement multiplayer in local network ([using this for example](https://github.com/henriquelalves/godoteasylan/tree/master))
+- [ ] Implement multiplayer in local network ([using this](https://github.com/henriquelalves/godoteasylan/tree/master))
