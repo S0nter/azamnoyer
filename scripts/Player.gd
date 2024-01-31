@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var Bullet = preload("res://bullet.tscn")
+var Bullet = preload("res://scenes/bullet.tscn")
 @export var speed = 250
 
 @onready var end_of_gun = $"Gun/Muzzle"
@@ -22,6 +22,8 @@ func _process(delta: float) -> void:
 		movement_direction.x = -1
 	if Input.is_action_pressed("right"):
 		movement_direction.x = 1
+	if Input.is_action_pressed("shoot"):
+		shoot()
 
 	movement_direction = movement_direction.normalized()
 	velocity = movement_direction * speed
@@ -29,9 +31,8 @@ func _process(delta: float) -> void:
 
 	#look_at(get_global_mouse_position())
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("shoot"):
-		shoot()
+#func _unhandled_input(event: InputEvent) -> void:
+	
 
 
 func shoot():
