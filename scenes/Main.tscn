@@ -1,123 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://d380qow6e4h8c"]
+[gd_scene load_steps=5 format=3 uid="uid://d380qow6e4h8c"]
 
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="1_3udac"]
 [ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/arrow_ui.png" id="1_ui35r"]
 [ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/arrow_ui_pressed.png" id="2_xn0a4"]
 [ext_resource type="PackedScene" uid="uid://bfi3ftfw1xspy" path="res://scenes/Player.tscn" id="3_o3mnl"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(0, -2)
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 323)
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
+script = ExtResource("1_3udac")
 
-[node name="Control" type="Control" parent="CanvasLayer2"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 340.0
-offset_top = -269.0
-offset_right = 906.0
-offset_bottom = 157.0
+offset_top = -648.0
+offset_right = 1152.0
 grow_vertical = 0
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 size_flags_vertical = 10
+metadata/_edit_use_anchors_ = true
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer2/Control"]
+[node name="up" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(116, 74)
-rotation = 1.57079
+position = Vector2(152, 363)
 scale = Vector2(10, 10)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
-action = "right"
+passby_press = true
+action = "up"
 visibility_mode = 1
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="CanvasLayer2/Control"]
+[node name="down" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(-286, 199)
-rotation = -1.57079
-scale = Vector2(10, 10)
-texture_normal = ExtResource("1_ui35r")
-texture_pressed = ExtResource("2_xn0a4")
-action = "left"
-visibility_mode = 1
-
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer2/Control"]
-texture_filter = 1
-position = Vector2(-21, 202)
+position = Vector2(281, 628)
 rotation = 3.14159
 scale = Vector2(10, 10)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
+passby_press = true
 action = "down"
 visibility_mode = 1
 
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer2/Control"]
+[node name="left" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(-150, -63)
+position = Vector2(16, 625)
+rotation = -1.57079
 scale = Vector2(10, 10)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
-action = "up"
+passby_press = true
+action = "left"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="UI/Control"]
+texture_filter = 1
+position = Vector2(418, 500)
+rotation = 1.57079
+scale = Vector2(10, 10)
+texture_normal = ExtResource("1_ui35r")
+texture_pressed = ExtResource("2_xn0a4")
+passby_press = true
+action = "right"
 visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_o3mnl")]
+position = Vector2(80, 45)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-88, -45)
-position_smoothing_enabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="Ash particles" type="CPUParticles2D" parent="."]
+[node name="Ash particles" type="CPUParticles2D" parent="Player"]
 texture_filter = 1
-position = Vector2(166, 225)
-local_coords = true
-direction = Vector2(1.535, 3.4)
+position = Vector2(488, -45)
+amount = 32
+lifetime = 7.0
+preprocess = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 500)
+direction = Vector2(-1, 0)
+spread = 15.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 272.73
-initial_velocity_max = 313.14
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
-visible = false
-follow_viewport_enabled = true
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
-texture_filter = 1
-position = Vector2(-133, 297)
-rotation = 1.57079
-scale = Vector2(10, 10)
-texture_normal = ExtResource("1_ui35r")
-texture_pressed = ExtResource("2_xn0a4")
-action = "right"
-visibility_mode = 1
-
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="CanvasLayer"]
-texture_filter = 1
-position = Vector2(-535, 422)
-rotation = -1.57079
-scale = Vector2(10, 10)
-texture_normal = ExtResource("1_ui35r")
-texture_pressed = ExtResource("2_xn0a4")
-action = "left"
-visibility_mode = 1
-
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer"]
-texture_filter = 1
-position = Vector2(-270, 425)
-rotation = 3.14159
-scale = Vector2(10, 10)
-texture_normal = ExtResource("1_ui35r")
-texture_pressed = ExtResource("2_xn0a4")
-action = "down"
-visibility_mode = 1
-
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer"]
-texture_filter = 1
-position = Vector2(-399, 160)
-scale = Vector2(10, 10)
-texture_normal = ExtResource("1_ui35r")
-texture_pressed = ExtResource("2_xn0a4")
-action = "up"
-visibility_mode = 1
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_accel_min = -15.0
+radial_accel_max = 51.67
+scale_amount_min = 7.29
+scale_amount_max = 7.29
+color = Color(1, 1, 1, 0.337255)
