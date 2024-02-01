@@ -8,9 +8,14 @@ script/source = "extends Area2D
 #@export var Bullet : PackedScene
 
 var speed = 750
+const life = 4  # seconds before dying
+var time = 0
 
 func _physics_process(delta):
 	position += transform.x * speed * delta
+	time += delta
+	if time >= life:
+		queue_free()
 
 func _on_Bullet_body_entered(body):
 	if body.is_in_group(\"mobs\"):

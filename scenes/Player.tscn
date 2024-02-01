@@ -23,6 +23,7 @@ region_rect = Rect2(0, 0, 56, 44)
 shape = SubResource("1")
 
 [node name="Gun" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(29, 27)
 scale = Vector2(1.70167, 1.70167)
@@ -30,5 +31,5 @@ texture = ExtResource("3_frg5m")
 script = ExtResource("4_50ywi")
 
 [node name="Muzzle" type="Marker2D" parent="Gun"]
-position = Vector2(11.7532, -1.17532)
+position = Vector2(5.28892, -0.587658)
 scale = Vector2(0.587659, 0.587659)

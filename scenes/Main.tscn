@@ -22,8 +22,10 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -648.0
-offset_right = 1152.0
+offset_left = 3.0
+offset_top = -647.0
+offset_right = 1155.0
+offset_bottom = 1.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 10
@@ -31,8 +33,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="up" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(152, 363)
-scale = Vector2(10, 10)
+position = Vector2(220, 225)
+scale = Vector2(5, 5)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
 passby_press = true
@@ -41,9 +43,9 @@ visibility_mode = 1
 
 [node name="down" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(281, 628)
+position = Vector2(286, 356)
 rotation = 3.14159
-scale = Vector2(10, 10)
+scale = Vector2(5, 5)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
 passby_press = true
@@ -52,9 +54,9 @@ visibility_mode = 1
 
 [node name="left" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(16, 625)
+position = Vector2(156, 354)
 rotation = -1.57079
-scale = Vector2(10, 10)
+scale = Vector2(5, 5)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
 passby_press = true
@@ -63,9 +65,9 @@ visibility_mode = 1
 
 [node name="right" type="TouchScreenButton" parent="UI/Control"]
 texture_filter = 1
-position = Vector2(418, 500)
+position = Vector2(354, 293)
 rotation = 1.57079
-scale = Vector2(10, 10)
+scale = Vector2(5, 5)
 texture_normal = ExtResource("1_ui35r")
 texture_pressed = ExtResource("2_xn0a4")
 passby_press = true
@@ -73,6 +75,7 @@ action = "right"
 visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_o3mnl")]
+z_index = 1
 position = Vector2(80, 45)
 
 [node name="Ash particles" type="CPUParticles2D" parent="Player"]
