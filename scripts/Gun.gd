@@ -2,7 +2,8 @@ extends Sprite2D
 
 var fun_allowed = false
 
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: CharacterBody2D = get_tree().get_root().get_node("Main/Player")
+
 @onready var end_of_gun = $"Muzzle"
 
 var Bullet = preload("res://scenes/bullet.tscn")
@@ -18,19 +19,22 @@ func _ready():
 
 func _process(delta):
 	var mouse = get_global_mouse_position()
+	aim_point = mouse
+	
 	if Input.is_action_just_pressed("shoot") and not fun_allowed or \
 		fun_allowed and Input.is_action_pressed("shoot"):
 		shoot()
 	
-	# FIXME: we should rotate around player and look at mouse
-	#global_transform = player.global_transform * Transform2D().translated(offset_of_player.rotated(get_angle_to(get_global_mouse_position())))
-	#global_position = get_global_mouse_position()
-	if distance(mouse, player.global_position) <= offset_of_player:
+	if fun_allowed:
+		global_transform = player.global_transform * Transform2D().translated(Vector2(offset_of_player, offset_of_player).rotated(get_angle_to(mouse)))
+		## disable look_at(...) ##
+		aim_point = global_position 	# uncontrollable in all directions
+		#aim_point = position        	# swirl
+	elif distance(mouse, player.global_position) <= offset_of_player:
 		global_position = mouse
 		aim_point = player.position
 	else:
 		global_position = player.global_position + (mouse - player.global_position).normalized() * offset_of_player
-		aim_point = mouse
 	look_at(aim_point)
 
 
@@ -41,6 +45,6 @@ func distance(vec1, vec2):
 
 func shoot():
 	var bullet = Bullet.instantiate()
-	owner.add_child(bullet)
+	get_tree().get_root().add_child(bullet)
 	bullet.global_transform = end_of_gun.global_transform
 	bullet.look_at(aim_point)

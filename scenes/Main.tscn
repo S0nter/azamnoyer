@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d380qow6e4h8c"]
+[gd_scene load_steps=6 format=3 uid="uid://d380qow6e4h8c"]
 
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="1_3udac"]
 [ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/arrow_ui.png" id="1_ui35r"]
+[ext_resource type="Script" path="res://scripts/ash.gd" id="2_trv1c"]
 [ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/arrow_ui_pressed.png" id="2_xn0a4"]
 [ext_resource type="PackedScene" uid="uid://bfi3ftfw1xspy" path="res://scenes/Player.tscn" id="3_o3mnl"]
 
@@ -13,6 +14,26 @@ position = Vector2(576, 323)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("1_3udac")
+
+[node name="Ash particles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(568, 0)
+amount = 32
+lifetime = 7.0
+preprocess = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 500)
+direction = Vector2(-1, 0)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_accel_min = -15.0
+radial_accel_max = 51.67
+scale_amount_min = 7.29
+scale_amount_max = 7.29
+color = Color(1, 1, 1, 0.337255)
+script = ExtResource("2_trv1c")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -77,22 +98,3 @@ visibility_mode = 1
 [node name="Player" parent="." instance=ExtResource("3_o3mnl")]
 z_index = 1
 position = Vector2(80, 45)
-
-[node name="Ash particles" type="CPUParticles2D" parent="Player"]
-texture_filter = 1
-position = Vector2(488, -45)
-amount = 32
-lifetime = 7.0
-preprocess = 3.0
-emission_shape = 3
-emission_rect_extents = Vector2(1, 500)
-direction = Vector2(-1, 0)
-spread = 15.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-radial_accel_min = -15.0
-radial_accel_max = 51.67
-scale_amount_min = 7.29
-scale_amount_max = 7.29
-color = Color(1, 1, 1, 0.337255)

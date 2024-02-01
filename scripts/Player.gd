@@ -7,21 +7,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var movement_direction := Vector2.ZERO
-	
-	# FIXME: normalize this:
-	if Input.is_action_pressed("up"):
-		movement_direction.y = -1 
-	if Input.is_action_pressed("down"):
-		movement_direction.y = 1
-	if Input.is_action_pressed("left"):
-		movement_direction.x = -1
-	if Input.is_action_pressed("right"):
-		movement_direction.x = 1
-
-
-	movement_direction = movement_direction.normalized()
+	var movement_direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = movement_direction * speed
+	
 	move_and_slide()
 
 	#look_at(get_global_mouse_position())
