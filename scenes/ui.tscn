@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://lh4mt8f7xqlh"]
 
-[ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/arrow_ui.png" id="1_ownvc"]
-[ext_resource type="Texture2D" uid="uid://slf3rgpjp5kh" path="res://assets/arrow_ui_pressed.png" id="2_s1ctc"]
+[ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/sprites/arrow_ui.png" id="1_ownvc"]
+[ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/sprites/arrow_ui_pressed.png" id="2_s1ctc"]
 
 [node name="Control" type="Control"]
 layout_direction = 2

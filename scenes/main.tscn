@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://d380qow6e4h8c"]
+
+[ext_resource type="Script" path="res://assets/scripts/camera.gd" id="1_vi848"]
+[ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/sprites/arrow_ui.png" id="2_80rg5"]
+[ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/sprites/arrow_ui_pressed.png" id="3_76w17"]
+[ext_resource type="PackedScene" uid="uid://bfi3ftfw1xspy" path="res://scenes/player.tscn" id="4_t0cf4"]
+[ext_resource type="Script" path="res://assets/scripts/ash.gd" id="5_edt62"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, -2)
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
+script = ExtResource("1_vi848")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="up" type="TouchScreenButton" parent="UI/Control"]
+texture_filter = 1
+position = Vector2(65, -130)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_80rg5")
+texture_pressed = ExtResource("3_76w17")
+passby_press = true
+action = "up"
+visibility_mode = 1
+
+[node name="down" type="TouchScreenButton" parent="UI/Control"]
+texture_filter = 1
+position = Vector2(130, 0)
+rotation = 3.14159
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_80rg5")
+texture_pressed = ExtResource("3_76w17")
+passby_press = true
+action = "down"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="UI/Control"]
+texture_filter = 1
+rotation = -1.57079
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_80rg5")
+texture_pressed = ExtResource("3_76w17")
+passby_press = true
+action = "left"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="UI/Control"]
+texture_filter = 1
+position = Vector2(195, -65)
+rotation = 1.57079
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_80rg5")
+texture_pressed = ExtResource("3_76w17")
+passby_press = true
+action = "right"
+visibility_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("4_t0cf4")]
+z_index = 1
+
+[node name="Ash particles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(568, 0)
+amount = 32
+lifetime = 7.0
+preprocess = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 500)
+direction = Vector2(-1, 0)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_accel_min = -15.0
+radial_accel_max = 51.67
+scale_amount_min = 7.29
+scale_amount_max = 7.29
+color = Color(1, 1, 1, 0.337255)
+script = ExtResource("5_edt62")

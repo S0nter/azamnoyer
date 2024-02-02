@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfi3ftfw1xspy"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bw6ed1djeeyiq" path="res://assets/player.png" id="2_c6r6q"]
-[ext_resource type="Texture2D" uid="uid://y5x0vgudjo05" path="res://assets/gun.png" id="3_frg5m"]
-[ext_resource type="Script" path="res://scripts/Gun.gd" id="4_50ywi"]
+[ext_resource type="Script" path="res://assets/scripts/player.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bw6ed1djeeyiq" path="res://assets/sprites/player.png" id="2_c6r6q"]
+[ext_resource type="Texture2D" uid="uid://y5x0vgudjo05" path="res://assets/sprites/gun.png" id="3_frg5m"]
+[ext_resource type="Script" path="res://assets/scripts/gun2.gd" id="4_6wthn"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(48, 48)
@@ -28,7 +28,7 @@ texture_filter = 1
 position = Vector2(29, 27)
 scale = Vector2(1.70167, 1.70167)
 texture = ExtResource("3_frg5m")
-script = ExtResource("4_50ywi")
+script = ExtResource("4_6wthn")
 
 [node name="Muzzle" type="Marker2D" parent="Gun"]
 position = Vector2(5.28892, -0.587658)
