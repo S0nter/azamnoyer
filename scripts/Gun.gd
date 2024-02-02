@@ -8,8 +8,9 @@ var fun_allowed = false
 
 var Bullet = preload("res://scenes/bullet.tscn")
 
-var aim_point = Vector2()
-var aim_vector = Vector2()
+var aim_point = Vector2()	# used by mouse
+var aim_vector = Vector2()	# used for gamepad and virtual joystick
+var mouse = get_global_mouse_position()
 const offset_of_player = 30
 
 
@@ -19,10 +20,20 @@ func _ready():
 
 
 func _process(delta):
-	var mouse = get_global_mouse_position()
+	mouse = get_global_mouse_position()
 	aim_point = mouse
 	aim_vector = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized()  # for gamepad/joystick
 	
+	offset_gun()
+	
+	rotate_gun()
+	
+	handle_input()
+	
+	flip_if_needed()
+
+
+func offset_gun():
 	if fun_allowed:
 		global_transform = player.global_transform * Transform2D().translated(Vector2(offset_of_player, offset_of_player).rotated(get_angle_to(mouse)))
 		## disable look_at(...) ##
@@ -35,17 +46,22 @@ func _process(delta):
 		aim_point = player.position
 	else:
 		global_position = player.global_position + (mouse - player.global_position).normalized() * offset_of_player
-	#look_at(aim_point)
-	
+
+
+func rotate_gun():
 	if aim_vector == Vector2(0, 0):
 		look_at(aim_point)
 	else:
 		look_at(global_position + aim_vector)
-	
+
+
+func handle_input():
 	if Input.is_action_just_pressed("shoot") and not fun_allowed or \
 		fun_allowed and Input.is_action_pressed("shoot"):
 		shoot()
 
+
+func flip_if_needed():
 	if player.global_position.x > global_position.x:
 		flip_v = true
 	else:
