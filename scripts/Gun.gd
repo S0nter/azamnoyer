@@ -36,6 +36,11 @@ func _process(delta):
 	else:
 		global_position = player.global_position + (mouse - player.global_position).normalized() * offset_of_player
 	look_at(aim_point)
+	
+	if player.global_position.x > global_position.x:
+		flip_v = true
+	else:
+		flip_v = false
 
 
 func distance(vec1, vec2):
