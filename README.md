@@ -7,9 +7,9 @@
 ## TODO:
 - [ ] Invent a project name
 - [x] Add ash/snow particles
-- [ ] Create basic controls for
+- [x] Create basic controls
     - [x] PC
-    - [ ] Phone
+    - [x] Phone
     - [x] Controller
 - [ ] Implement multiplayer on one device for phones
 - [ ] Implement multiplayer in local network ([using this](https://github.com/henriquelalves/godoteasylan/tree/master))
