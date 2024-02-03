@@ -14,6 +14,8 @@ var cooldown = 0.1			# seconds before next shot
 var mouse = get_global_mouse_position()
 var sec_since_shot = 0		# seconds passed after shot was made
 
+var last_aim_point = Vector2()
+var last_aim_vector = Vector2()
 
 const offset_of_player = 30
 
@@ -45,28 +47,21 @@ func offset_gun():
 		set_aim_point(global_position)  	# uncontrollable in all directions
 		#set_aim_point(position)         	# swirl
 	elif aim_vector != Vector2(0, 0):
-		
 		global_position = player_pos + aim_vector * offset_of_player
 	elif player_pos.distance_to(mouse) <= offset_of_player:
-		
 		global_position = mouse
 		set_aim_point(player.position)
-		#aim_vector = global_position - aim_point
-		#flip_h = true
+		aim_vector = global_position - aim_point
 	elif not on_mobile():
-		print(2)
+		set_aim_point(mouse)
 		global_position = player_pos + (mouse - player_pos).normalized() * offset_of_player
 
 
 func rotate_gun():
-	#if aim_vector == Vector2(0, 0):
 	look_at(global_position + aim_vector)
-	#else:
-		#look_at(global_position + aim_vector)
-	
+
 	# flip if needed
 	flip_v = 90 < abs(int(rotation_degrees) % 360) and abs(int(rotation_degrees) % 360) < 270
-	
 
 
 func handle_input():
@@ -93,11 +88,12 @@ func shoot():
 
 
 func set_aim_point(value: Vector2):
-	#last_aim_point = aim_point
-	aim_point = value
-	aim_vector = (global_position - aim_point).normalized()
-	print(aim_point, aim_vector)
+	last_aim_point = aim_point
+	last_aim_vector = aim_vector
 	
+	aim_point = value
+	aim_vector = (aim_point - global_position).normalized()
+
 
 func on_mobile() -> bool:
 	return DisplayServer.is_touchscreen_available()

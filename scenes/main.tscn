@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d380qow6e4h8c"]
+[gd_scene load_steps=8 format=3 uid="uid://d380qow6e4h8c"]
 
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_3bdp0"]
 [ext_resource type="Script" path="res://assets/scripts/camera.gd" id="1_vi848"]
 [ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/sprites/arrow_ui.png" id="2_80rg5"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/virtual_joystick.tscn" id="2_sfs63"]
@@ -9,6 +10,7 @@
 
 [node name="Main" type="Node2D"]
 position = Vector2(0, -2)
+script = ExtResource("1_3bdp0")
 
 [node name="Camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -91,9 +93,6 @@ passby_press = true
 action = "right"
 visibility_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("4_t0cf4")]
-z_index = 1
-
 [node name="Ash particles" type="CPUParticles2D" parent="."]
 texture_filter = 1
 position = Vector2(568, 0)
@@ -113,3 +112,6 @@ scale_amount_min = 7.29
 scale_amount_max = 7.29
 color = Color(1, 1, 1, 0.337255)
 script = ExtResource("5_edt62")
+
+[node name="Player" parent="." instance=ExtResource("4_t0cf4")]
+z_index = 1

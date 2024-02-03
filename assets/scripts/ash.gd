@@ -9,4 +9,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position = player.position + Vector2(550, 0)
+	global_position = player.position + Vector2(DisplayServer.window_get_size().x / 2, 0)
