@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d380qow6e4h8c"]
+[gd_scene load_steps=7 format=3 uid="uid://d380qow6e4h8c"]
 
 [ext_resource type="Script" path="res://assets/scripts/camera.gd" id="1_vi848"]
 [ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/sprites/arrow_ui.png" id="2_80rg5"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/virtual_joystick.tscn" id="2_sfs63"]
 [ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/sprites/arrow_ui_pressed.png" id="3_76w17"]
 [ext_resource type="PackedScene" uid="uid://bfi3ftfw1xspy" path="res://scenes/player.tscn" id="4_t0cf4"]
 [ext_resource type="Script" path="res://assets/scripts/ash.gd" id="5_edt62"]
@@ -16,7 +17,28 @@ script = ExtResource("1_vi848")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("2_sfs63")]
+deadzone_size = 0.0
+visibility_mode = 1
+
+[node name="Virtual Joystick2" parent="UI" instance=ExtResource("2_sfs63")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+deadzone_size = 0.0
+visibility_mode = 1
+action_left = "aim_left"
+action_right = "aim_right"
+action_up = "aim_up"
+action_down = "aim_down"
+
 [node name="Control" type="Control" parent="UI"]
+visible = false
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 2
