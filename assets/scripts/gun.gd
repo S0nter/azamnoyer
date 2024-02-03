@@ -10,13 +10,18 @@ var Bullet = preload("res://scenes/bullet.tscn")
 
 var aim_point = Vector2()	# used by mouse
 var aim_vector = Vector2()	# used for gamepad and virtual joystick
+var cooldown = 0.1			# seconds before next shot
 var mouse = get_global_mouse_position()
+var sec_since_shot = 0		# seconds passed after shot was made
+
+
 const offset_of_player = 30
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if fun_allowed:
+		cooldown = 0
 
 
 func _process(delta):
@@ -52,17 +57,24 @@ func rotate_gun():
 	else:
 		look_at(global_position + aim_vector)
 	
-	# flip if needed
-	if player.global_position.x > global_position.x:
+	# flip if needed and mabye rewrite some things here 
+	if player.global_position.x > global_position.x and \
+	player.global_position.distance_to(mouse) > offset_of_player or \
+	player.global_position.x < global_position.x and \
+	player.global_position.distance_to(mouse) < offset_of_player:
 		flip_v = true
 	else:
 		flip_v = false
 
 
 func handle_input():
-	if Input.is_action_just_pressed("shoot") and not fun_allowed or \
-		fun_allowed and Input.is_action_pressed("shoot"):
+	var delta = get_process_delta_time()
+	sec_since_shot += delta
+	
+	
+	if Input.is_action_pressed("shoot") and sec_since_shot > cooldown:
 		shoot()
+		sec_since_shot = 0
 
 
 func shoot():
@@ -70,3 +82,6 @@ func shoot():
 	get_tree().get_root().add_child(bullet)
 	bullet.global_transform = end_of_gun.global_transform
 	bullet.look_at(end_of_gun.global_position + aim_vector)
+	
+	if fun_allowed:
+		bullet.look_at(mouse)
