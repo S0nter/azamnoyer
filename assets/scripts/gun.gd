@@ -49,7 +49,7 @@ func offset_gun():
 	elif player_pos.distance_to(mouse) <= offset_of_player:
 		global_position = mouse
 		aim_point = player.position
-		flip_h = true
+		aim_vector = global_position - aim_point
 	else:
 		global_position = player_pos + (mouse - player_pos).normalized() * offset_of_player
 
