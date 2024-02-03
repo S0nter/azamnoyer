@@ -11,15 +11,16 @@ func _ready():
 
 
 func _process(delta):
-	aim(delta)
+	aim()
 	cooldown -= delta
 	if Input.is_action_pressed("shoot"):
 		if cooldown <= 0:
 			cooldown = 0.1
 			shoot()
-	
 
-func aim(delta):
+
+func aim():
+	var delta = get_process_delta_time()
 	var mouse = get_global_mouse_position()
 	look_at(mouse)
 
@@ -27,6 +28,10 @@ func aim(delta):
 	if position.distance_to(mouse) > 30:
 		difference = difference.normalized() * 30
 	position = lerp(position, difference, delta * 10)
+	
+	# flip if needed
+	flip_v = 90 < abs(int(rotation_degrees) % 360) and abs(int(rotation_degrees) % 360) < 270
+
 
 func shoot():
 	var bullet = Bullet.instantiate()
