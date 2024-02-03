@@ -6,18 +6,37 @@ var fun_allowed = false
 
 @onready var shoot_point = $"Muzzle"
 
+
+# Gun positioning
+enum AimingDevice {
+	Mouse,
+	Gamepad
+}
+
+
 var Bullet = preload("res://scenes/bullet.tscn")
 
-var aim_point = Vector2()	# used by mouse
-var aim_vector = Vector2()	# used for gamepad and virtual joystick
+var aim_point: Vector2  	# used by mouse
+var aim_vector: Vector2 	# used for gamepad and virtual joystick
+var aim_device: AimingDevice# used if not on mobile; in case of gamepad/mouse
 var cooldown = 0.1			# seconds before next shot
-var mouse = get_global_mouse_position()
+var mouse: Vector2
+var mouse_moved = true
 var sec_since_shot = 0		# seconds passed after shot was made
 
-var last_aim_point = Vector2()
-var last_aim_vector = Vector2()
+var last_aim_point: Vector2
+var last_aim_vector: Vector2
 
 const offset_of_player = 30
+
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_moved = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		mouse_moved = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,9 +46,16 @@ func _ready():
 
 
 func _process(delta):
+	store_previous_values()
+	
 	mouse = get_global_mouse_position()
 	aim_point = mouse
 	aim_vector = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized()  # for gamepad/joystick
+	if mouse_moved:
+		aim_device = AimingDevice.Mouse
+	if aim_vector != Vector2(0, 0):
+		aim_device = AimingDevice.Gamepad
+	
 	
 	offset_gun()
 	rotate_gun()
@@ -48,13 +74,17 @@ func offset_gun():
 		#set_aim_point(position)         	# swirl
 	elif aim_vector != Vector2(0, 0):
 		global_position = player_pos + aim_vector * offset_of_player
-	elif player_pos.distance_to(mouse) <= offset_of_player:
+	elif player_pos.distance_to(mouse) <= offset_of_player and aim_device == AimingDevice.Mouse:
 		global_position = mouse
 		set_aim_point(player.position)
 		aim_vector = global_position - aim_point
 	elif not on_mobile():
-		set_aim_point(mouse)
-		global_position = player_pos + (mouse - player_pos).normalized() * offset_of_player
+		match aim_device:
+			AimingDevice.Mouse:
+				set_aim_point(mouse)
+			AimingDevice.Gamepad:
+				set_aim_vector(last_aim_vector)
+		global_position = player_pos + (aim_point - player_pos).normalized() * offset_of_player
 
 
 func rotate_gun():
@@ -87,12 +117,19 @@ func shoot():
 		bullet.look_at(mouse)
 
 
-func set_aim_point(value: Vector2):
+func store_previous_values():
 	last_aim_point = aim_point
 	last_aim_vector = aim_vector
-	
+
+
+func set_aim_point(value: Vector2):
 	aim_point = value
 	aim_vector = (aim_point - global_position).normalized()
+
+
+func set_aim_vector(value: Vector2):
+	aim_vector = value
+	aim_point = global_position + aim_vector
 
 
 func on_mobile() -> bool:
