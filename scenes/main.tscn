@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3bdp0"]
 [ext_resource type="Script" path="res://assets/scripts/camera.gd" id="1_vi848"]
-[ext_resource type="Texture2D" uid="uid://bgu0hhrknrnmu" path="res://assets/sprites/arrow_ui.png" id="2_80rg5"]
+[ext_resource type="Texture2D" uid="uid://ctutfvbo5x764" path="res://assets/sprites/arrow_ui.png" id="2_80rg5"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/virtual_joystick.tscn" id="2_sfs63"]
-[ext_resource type="Texture2D" uid="uid://cum12osav6u0k" path="res://assets/sprites/arrow_ui_pressed.png" id="3_76w17"]
+[ext_resource type="Texture2D" uid="uid://brwvikkesh2ue" path="res://assets/sprites/arrow_ui_pressed.png" id="3_76w17"]
 [ext_resource type="PackedScene" uid="uid://bfi3ftfw1xspy" path="res://scenes/player.tscn" id="4_t0cf4"]
 [ext_resource type="Script" path="res://assets/scripts/ash.gd" id="5_edt62"]
 
